@@ -96,6 +96,7 @@ class LoginView extends StatelessWidget {
                     controller: viewModel.passwordController,
                     labelText: "Şifre",
                     isObscure: viewModel.isObscure,
+                    suffixIcon: _buildSuffixIcon(viewModel),
                   ),
                   const SizedBox(height: 10),
                   _rememberMeAndLogin(viewModel: viewModel),
@@ -108,10 +109,21 @@ class LoginView extends StatelessWidget {
     );
   }
 
+  IconButton _buildSuffixIcon(LoginViewModel viewModel) {
+    return IconButton(
+      onPressed: () => viewModel.changeObscure(),
+      icon: Icon(
+        viewModel.isObscure ? Icons.remove_red_eye_outlined : Icons.remove_red_eye,
+      ),
+      color: Colors.white,
+    );
+  }
+
   TextField _textField({
     required TextEditingController controller,
     required String labelText,
     required bool isObscure,
+    Widget? suffixIcon,
   }) {
     return TextField(
       style: const TextStyle(color: Colors.white),
@@ -120,6 +132,7 @@ class LoginView extends StatelessWidget {
       decoration: InputDecoration(
         labelText: labelText,
         labelStyle: const TextStyle(color: Colors.white),
+        suffixIcon: suffixIcon,
       ),
     );
   }
@@ -163,10 +176,14 @@ class LoginView extends StatelessWidget {
               shadowColor: Colors.transparent,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
             ),
-            child: const Text(
-              "Giriş Yap",
-              style: TextStyle(color: Colors.white),
-            ),
+            child: viewModel.isLoading
+                ? const Center(
+                    child: CircularProgressIndicator.adaptive(),
+                  )
+                : const Text(
+                    "Giriş Yap",
+                    style: TextStyle(color: Colors.white),
+                  ),
           ),
         )
       ],

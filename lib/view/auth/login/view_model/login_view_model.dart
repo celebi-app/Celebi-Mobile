@@ -48,6 +48,7 @@ abstract class _LoginViewModelBase extends BaseViewModel with Store {
       isLoadingChange();
       navigation.navigateToPageClear(path: NavigationConstants.USER);
     } else {
+      isLoadingChange();
       scaffoldState.showSnackBar(text: "Hatalı kullanıcı adı veya şifre");
     }
   }
