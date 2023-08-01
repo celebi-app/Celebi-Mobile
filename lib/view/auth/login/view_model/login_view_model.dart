@@ -13,13 +13,11 @@ class LoginViewModel = _LoginViewModelBase with _$LoginViewModel;
 abstract class _LoginViewModelBase extends BaseViewModel with Store {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  GlobalKey<ScaffoldState> scaffoldState = GlobalKey();
   late LoginService loginService;
   @override
   void setContext(BuildContext context) => viewModelContext = context;
   @override
   void init() {
-    print("init from viewmodel");
     loginService = LoginService(network);
   }
 
@@ -47,9 +45,11 @@ abstract class _LoginViewModelBase extends BaseViewModel with Store {
       } else {
         await cacheManager.setStringValue(PreferencesKeys.CACHETOKEN, response.token!);
       }
+      isLoadingChange();
+      navigation.navigateToPageClear(path: NavigationConstants.USER);
+    } else {
+      scaffoldState.showSnackBar(text: "Hatalı kullanıcı adı veya şifre");
     }
-    isLoadingChange();
-    navigation.navigateToPageClear(path: NavigationConstants.USER);
   }
 
   @observable

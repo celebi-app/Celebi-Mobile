@@ -30,10 +30,7 @@ abstract class _PackageInfoViewModelBase extends BaseViewModel with Store {
   }
 
   @observable
-  List<PackageInfoModel?> infos = [];
-
-  @observable
-  PackageInfoModel? packageInfoModel = PackageInfoModel();
+  List<PackageInfoModel?>? packageInfoModels;
 
   @action
   Future<void> fetchPackageInfo() async {
@@ -41,18 +38,10 @@ abstract class _PackageInfoViewModelBase extends BaseViewModel with Store {
     String? token = cacheManager.getStringValue(PreferencesKeys.TOKEN);
     token ??= cacheManager.getStringValue(PreferencesKeys.CACHETOKEN);
 
-    packageInfoModel = await service.fetchPackageInformation(token ?? "");
-    infos.add(packageInfoModel);
-    infos.add(packageInfoModel);
-    infos.add(packageInfoModel);
-    infos.add(packageInfoModel);
-    infos.add(packageInfoModel);
-    infos.add(packageInfoModel);
-    infos.add(packageInfoModel);
-    infos.add(packageInfoModel);
-    infos.add(packageInfoModel);
-    infos.add(packageInfoModel);
-
+    final response = await service.fetchPackageInformation(token ?? "");
+    if (response != null) {
+      packageInfoModels = response.reversed.toList();
+    }
     _changeLoading();
   }
 }

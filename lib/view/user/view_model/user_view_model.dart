@@ -1,5 +1,4 @@
 import 'package:celebi/product/constants/navigation_constants.dart';
-import 'package:celebi/view/user/service/user_service.dart';
 import 'package:flutter/material.dart';
 import '../../../core/base/base_view_model.dart';
 
@@ -8,6 +7,7 @@ import 'package:mobx/mobx.dart';
 import '../../../core/constants/enums/preferences_keys.dart';
 import '../model/user_model.dart';
 import '../service/IUserService.dart';
+import '../service/user_service.dart';
 part 'user_view_model.g.dart';
 
 class UserViewModel = _UserViewModelBase with _$UserViewModel;
@@ -18,12 +18,9 @@ abstract class _UserViewModelBase extends BaseViewModel with Store {
   @override
   void setContext(BuildContext context) => viewModelContext = context;
   @override
-  void init() {
-    print("init from userviewmodel;");
+  void init() async {
     userService = UserService(network);
-    print("init from userviewmodel after userServis init");
-
-    fetchUser();
+    await fetchUser();
   }
 
   @observable
@@ -39,19 +36,17 @@ abstract class _UserViewModelBase extends BaseViewModel with Store {
 
   @action
   Future<void> fetchUser() async {
+    _changeLoading();
     String? token = cacheManager.getStringValue(
       PreferencesKeys.TOKEN,
     );
     token ??= cacheManager.getStringValue(PreferencesKeys.CACHETOKEN);
     userModel = await userService.fetchUserProfile(token ?? "");
+    _changeLoading();
   }
 
   void logout() async {
     await cacheManager.clearAll();
     navigation.navigateToPageClear(path: NavigationConstants.SPLASH);
-  }
-
-  void goPackageInfo() {
-    navigation.navigateToPage(path: NavigationConstants.PACKAGE_INFO);
   }
 }

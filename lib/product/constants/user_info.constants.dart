@@ -5,17 +5,17 @@ class UserInfoConstants {
 
   static const AD = "AD";
   static const ADRES = "ADRES";
-  static const ALT_BRANS_ID = "ALT BRANŞ ID";
+  static const ALT_BRANS = "ALT BRANŞ";
   static const ANNE_ADI = "ANNE ADI";
   static const ANNE_TELEFONU = "ANNE TELEFONU";
-  static const ANTRENOR_ID = "ANTRENÖR ID";
+  static const ANTRENOR = "ANTRENÖR";
   static const ACIKLAMA = "AÇIKLAMA";
   static const BABA_ADI = "BABA ADI";
   static const BABA_TELEFONU = "BABA TELEFONU";
   static const BAKIYE = "BAKİYE";
   static const BAS_TARIH = "BAŞLANGIÇ TARİHİ";
   static const BITIS_TARIHI = "BİTİŞ TARİHİ";
-  static const BRANS_ID = "BRANŞ ID";
+  static const BRANS = "BRANŞ";
   static const CREATE_DATE = "BAŞLANGIÇ TARİHİ";
   static const CREATE_USER_ID = "KULLANICI ID";
   static const DOGUM_TARIHI = "DOĞUM TARİHİ";
@@ -40,5 +40,5 @@ class UserInfoConstants {
   static const TUTAR = "TUTAR";
   static const AIDAT = "AİDAT TUTARI";
   static const INDIRIMLI = "İNDİRİMLİ";
-  static const KUSAK_ID = "KUŞAK ID";
+  static const KUSAK = "KUŞAK";
 }

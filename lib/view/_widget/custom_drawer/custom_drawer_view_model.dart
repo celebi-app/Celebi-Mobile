@@ -32,15 +32,15 @@ abstract class _CustomDrawerViewModelBase extends BaseViewModel with Store {
         onTap: () => navigation.replaceToPage(path: NavigationConstants.PACKAGE_INFO),
       ),
       CustomDrawerModel(
-        icon: Icons.info_outline_rounded,
-        title: AppConstant.PAKET_BILGILERI,
-        onTap: () => navigation.replaceToPage(path: NavigationConstants.PACKAGE_INFO),
-      ),
-      CustomDrawerModel(
-        icon: Icons.info_outline_rounded,
-        title: AppConstant.PAKET_BILGILERI,
-        onTap: () => navigation.replaceToPage(path: NavigationConstants.PACKAGE_INFO),
+        icon: Icons.monitor_heart_outlined,
+        title: AppConstant.TAHSILAT_BILGILERI,
+        onTap: () => navigation.replaceToPage(path: NavigationConstants.COLLECTION),
       ),
     ];
+  }
+
+  void logout() async {
+    await cacheManager.clearAll();
+    navigation.navigateToPageClear(path: NavigationConstants.SPLASH);
   }
 }

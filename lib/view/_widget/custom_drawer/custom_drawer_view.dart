@@ -17,13 +17,28 @@ class CustomDrawerView extends StatelessWidget {
       },
       onPageBuilder: (context, viewModel) => Drawer(
         backgroundColor: const Color(0xFF01495F),
-        child: ListView(
-          padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
-          shrinkWrap: true,
+        child: Column(
           children: [
-            ...viewModel.drawerItems.map((model) => CustomDrawerItem(
-                  model: model,
-                )),
+            ListView(
+              padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
+              shrinkWrap: true,
+              children: [
+                ...viewModel.drawerItems.map((model) => CustomDrawerItem(
+                      model: model,
+                    )),
+              ],
+            ),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: TextButton(
+                onPressed: () => viewModel.logout(),
+                child: const Text(
+                  "Çıkış yap",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            )
           ],
         ),
       ),

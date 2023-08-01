@@ -3,5 +3,5 @@
 import 'package:celebi/view/package_info/model/package_info_model.dart';
 
 abstract class IPackageInfoService {
-  Future<PackageInfoModel?> fetchPackageInformation(String token);
+  Future<List<PackageInfoModel?>?> fetchPackageInformation(String token);
 }

@@ -5,6 +5,7 @@ class AppConstant {
 
   static const ANA_SAYFA = "ANA SAYFA"; // user, drawer
   static const PAKET_BILGILERI = "PAKET BİLGİLERİ"; // package_info
+  static const TAHSILAT_BILGILERI = "TAHSİLAT BİLGİLERİ"; // package_info
 
   static const DEFAULT_PROFILE_IMAGE = "https://picsum.photos/200/300"; // TODO: DEFAULT FOTOĞRAF LİNKİ
   static const CIKIS_YAP = "ÇIKIŞ YAP"; // POPUP MENÜ İTEM

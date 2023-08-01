@@ -10,13 +10,19 @@ class PackageInfoService extends IPackageInfoService {
   final NetworkService _network;
 
   @override
-  Future<PackageInfoModel?> fetchPackageInformation(String token) async {
+  Future<List<PackageInfoModel?>?> fetchPackageInformation(String token) async {
     try {
-      final response = await _network.dio.get("http://10.0.2.2:5000/user_paket", options: Options(headers: {"Authorization": "Bearer $token"}), data: token);
+      final response = await _network.dio.get(
+        "/Uye/paket",
+        options: Options(headers: {"Authorization": "Bearer $token"}),
+      );
       if (response.statusCode == 200) {
-        return PackageInfoModel.fromJson(response.data);
+        print(response);
+        final responseData = response.data as List<dynamic>;
+        final packageInfoList = responseData.map((json) => PackageInfoModel.fromJson(json)).toList();
+        return packageInfoList;
       } else {
-        final errorMessage = response.data['error'] as String;
+        final errorMessage = response.data as String;
         return Future.error(errorMessage);
       }
     } catch (e) {

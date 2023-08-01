@@ -8,4 +8,5 @@ class NavigationConstants {
   static const LOGIN = "/login";
   static const USER = "/user";
   static const PACKAGE_INFO = "/package_info";
+  static const COLLECTION = "/collection_info";
 }

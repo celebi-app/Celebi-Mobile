@@ -25,35 +25,19 @@ mixin _$PackageInfoViewModel on _PackageInfoViewModelBase, Store {
     });
   }
 
-  late final _$infosAtom =
-      Atom(name: '_PackageInfoViewModelBase.infos', context: context);
+  late final _$packageInfoModelsAtom = Atom(
+      name: '_PackageInfoViewModelBase.packageInfoModels', context: context);
 
   @override
-  List<PackageInfoModel?> get infos {
-    _$infosAtom.reportRead();
-    return super.infos;
+  List<PackageInfoModel?>? get packageInfoModels {
+    _$packageInfoModelsAtom.reportRead();
+    return super.packageInfoModels;
   }
 
   @override
-  set infos(List<PackageInfoModel?> value) {
-    _$infosAtom.reportWrite(value, super.infos, () {
-      super.infos = value;
-    });
-  }
-
-  late final _$packageInfoModelAtom = Atom(
-      name: '_PackageInfoViewModelBase.packageInfoModel', context: context);
-
-  @override
-  PackageInfoModel? get packageInfoModel {
-    _$packageInfoModelAtom.reportRead();
-    return super.packageInfoModel;
-  }
-
-  @override
-  set packageInfoModel(PackageInfoModel? value) {
-    _$packageInfoModelAtom.reportWrite(value, super.packageInfoModel, () {
-      super.packageInfoModel = value;
+  set packageInfoModels(List<PackageInfoModel?>? value) {
+    _$packageInfoModelsAtom.reportWrite(value, super.packageInfoModels, () {
+      super.packageInfoModels = value;
     });
   }
 
@@ -84,8 +68,7 @@ mixin _$PackageInfoViewModel on _PackageInfoViewModelBase, Store {
   String toString() {
     return '''
 isLoading: ${isLoading},
-infos: ${infos},
-packageInfoModel: ${packageInfoModel}
+packageInfoModels: ${packageInfoModels}
     ''';
   }
 }

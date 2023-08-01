@@ -1,10 +1,11 @@
 import 'package:celebi/view/auth/splash/view/splash_view.dart';
+import 'package:celebi/view/collection/view/collection_view.dart';
 import 'package:celebi/view/package_info/view/package_info_view.dart';
-import 'package:celebi/view/user/view/user_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../../product/constants/navigation_constants.dart';
 import '../../../view/auth/login/view/login_view.dart';
+import '../../../view/user/view/user_view.dart';
 
 class NavigationRoute {
   static final NavigationRoute _instace = NavigationRoute._init();
@@ -21,6 +22,8 @@ class NavigationRoute {
         return normalNavigate(const LoginView(), NavigationConstants.LOGIN);
       case NavigationConstants.PACKAGE_INFO:
         return normalNavigate(const PackageInfoView(), NavigationConstants.PACKAGE_INFO);
+      case NavigationConstants.COLLECTION:
+        return normalNavigate(const CollectionView(), NavigationConstants.COLLECTION);
       default:
         return MaterialPageRoute(
           builder: (context) => const SplashView(),

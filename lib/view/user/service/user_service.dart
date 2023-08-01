@@ -12,7 +12,10 @@ class UserService extends IUserService {
   @override
   Future<UserModel?> fetchUserProfile(String token) async {
     try {
-      final response = await _network.dio.get("http://10.0.2.2:5000/user_info", options: Options(headers: {"Authorization": "Bearer $token"}), data: token);
+      final response = await _network.dio.get("/Uye/info",
+          options: Options(
+            headers: {"Authorization": "Bearer $token"},
+          ));
       if (response.statusCode == 200) {
         return UserModel.fromJson(response.data);
       } else {

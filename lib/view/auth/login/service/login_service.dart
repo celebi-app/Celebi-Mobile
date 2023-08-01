@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:celebi/core/init/network/network_service.dart';
+import 'package:dio/dio.dart';
 
 import '../model/login_model.dart';
 import '../model/login_response_model.dart';
@@ -15,23 +16,20 @@ class LoginService extends ILoginService {
   @override
   Future<LoginResponseModel?> fetchUserControl(LoginModel model) async {
     try {
-      final response = await _network.dio.get(
-        "http://10.0.2.2:5000/uyegiris?TC=${model.email}&Sifre=${model.password}",
-        //"http://10.0.2.2:5000/uyegiris",
-
+      final response = await _network.dio.post<Map<String, dynamic>>(
+        "/Authenticate",
         data: model.toJson(),
       );
-      // TODO HATA DURUMLARI YAKALANACAK.
-
       if (response.statusCode == HttpStatus.ok) {
-        final token = response.data;
-        return LoginResponseModel(token: token);
+        if (response.data == null) return Future.error(response);
+        return LoginResponseModel.fromJson(response.data!);
       } else {
-        final errorMessage = response.data['error'] as String;
+        final errorMessage = response.data as String;
         return Future.error(errorMessage);
       }
-    } catch (e) {
-      return Future.error("Hata: $e");
+    } on DioError catch (exception) {
+      print(exception.toString());
+      return null;
     }
   }
 }

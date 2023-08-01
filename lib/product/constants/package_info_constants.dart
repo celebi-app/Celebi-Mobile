@@ -3,7 +3,7 @@
 class PackageInfoConstants {
   PackageInfoConstants._init();
 
-  static const PAKET = "PAKET";
+  static const PAKET_BILGISI = "PAKET BİLGİSİ";
   static const TUTAR = "TUTAR";
   static const BASLANGIC_TARIHI = "BAŞLANGIÇ TARİHİ";
   static const BITIS_TARIHI = "BİTİŞ TARİHİ";
