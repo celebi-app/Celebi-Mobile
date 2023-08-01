@@ -39,14 +39,8 @@ class LoginView extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        _topImage(),
-                        _formField(context, viewModel),
-                      ],
-                    ),
-                  ),
+                  _topImage(),
+                  _formField(context, viewModel),
                   _flexibleBottomImage(),
                 ],
               ),
@@ -57,9 +51,11 @@ class LoginView extends StatelessWidget {
     );
   }
 
-  Image _topImage() {
-    return Image.asset(
-      "assets/images/celebi_sk.jpg",
+  Widget _topImage() {
+    return Flexible(
+      child: Image.asset(
+        "assets/images/celebi_sk.jpg",
+      ),
     );
   }
 
